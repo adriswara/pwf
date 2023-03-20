@@ -27,6 +27,12 @@ class Welcome extends CI_Controller {
 	}
 	public function add()
 	{
+		if ($this->input->post('submit')) {
+			$this->load->model('Cats_model');
+			$this->Cats_model->create();
+			redirect('');
+		}
+		$this->load->model('Cats_model');
 		$this->load->view('cats/cat_form');
 	}
 }

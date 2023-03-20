@@ -50,28 +50,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <a class="btn btn-danger mt-4 ms-3" href="<?=site_url('')?>">Cancel</a>
 
-<form action="">
+<form action="" method="post">
   <div class="mb-3 mt-3 ms-3">
-    <label for="nama" class="form-label">nama:</label>
-    <input type="nama" class="form-control" id="nama" placeholder="Enter nama" name="nama">
+    <label for="name" class="form-label">Nama:</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
   </div>
   <div class="mb-3 mt-3 ms-3">
-    <label for="nama" class="form-label">nama:</label>
-    <input type="nama" class="form-control" id="nama" placeholder="Enter nama" name="nama">
+    <select name="type" id="" required>
+      <option value="">Choose Type</option>
+      <option value="Domestic">Domestic</option>
+      <option value="Angora">Angora</option>
+      <option value="Persia">Persia</option>
+    </select>
   </div>
   <div class="mb-3 mt-3 ms-3">
-    <label for="nama" class="form-label">nama:</label>
-    <input type="nama" class="form-control" id="nama" placeholder="Enter nama" name="nama">
+    <label for="gender" class="form-label">Gender:</label>
+    <input type="radio" class="form-control" id="gender" name="gender" value="male" required>Male
+    <input type="radio" class="form-control" id="gender" name="gender" value="female" required>Female
   </div>
   <div class="mb-3 mt-3 ms-3">
-    <label for="nama" class="form-label">nama:</label>
-    <input type="nama" class="form-control" id="nama" placeholder="Enter nama" name="nama">
+    <label for="age" class="form-label">Age:</label>
+    <input type="number" class="form-control" id="age" placeholder="Enter age" name="age" required>
   </div>
   <div class="mb-3 mt-3 ms-3">
-    <label for="nama" class="form-label">nama:</label>
-    <input type="nama" class="form-control" id="nama" placeholder="Enter nama" name="nama">
+    <label for="price" class="form-label">Price:</label>
+    <input type="number" class="form-control" id="price" placeholder="Enter price" name="price" required>
   </div>
-  <button type="submit" class="btn btn-primary ms-3">Submit</button>
+  <button type="submit" class="btn btn-primary ms-3" value="save" name="submit">Submit</button>
 </form> 
 
     <?php $this->load->view('footer'); ?>
