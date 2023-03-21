@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
+          <a class="nav-link" href="">Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
+          <a class="nav-link" href="<?= site_url() ?>">Cat List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Link</a>
+          <a class="nav-link" href="<?=site_url('Categori/')?>">Categories</a>
         </li>
       </ul>
       <form class="d-flex">
