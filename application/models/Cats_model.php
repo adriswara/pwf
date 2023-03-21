@@ -18,5 +18,7 @@ class Cats_model extends CI_Model {
 	}
 	public function read()
 	{
+      $query=$this->db->get('cats088');
+        return $query->result();
 	}
 }

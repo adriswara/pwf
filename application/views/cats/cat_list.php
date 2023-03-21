@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </table> -->
     <a class="btn btn-light mt-4" href="<?=site_url('Welcome/add')?>">Add new cat</a>
     <div class="row">
-    <div class="col-sm-3 mt-5 ms-3">
+    <!-- <div class="col-sm-3 mt-5 ms-3">
         <div class="card bg-dark text-white" style="width:400px">
           <div class="card-body">
             <h4 class="card-title">1.Kucing Ipsum</h4>
@@ -45,17 +45,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <img class="card-img-bottom" src="assets\img-cat1.png" alt="Card image" style="width:100%">
         </div>
-    </div>
+    </div> -->
+    <?php $i=1; foreach($cats as $cat) { ?>
     <div class="col-sm-3 mt-5 ms-3">
         <div class="card bg-dark text-white" style="width:400px">
           <div class="card-body">
-            <h4 class="card-title">1.Kucing Ipsum</h4>
-            <p class="card-text">Kucing Ipsum adalah Type a dengan Gender b yang sudah berumur c.</p>
+            <h4 class="card-title"><?= $i++ ?>. <?= $cat->name ?>, $<?= $cat->price ?></h4>
+            <p class="card-text"> <?= $cat->name ?> adalah kucing Type <?= $cat->type ?> dengan Gender <?= $cat->gender ?> yang sudah berumur <?= $cat->age ?>.</p>
             <a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a>
           </div>
           <img class="card-img-bottom" src="assets\img-cat1.png" alt="Card image" style="width:100%">
         </div>
     </div>
+    <?php } ?>
   </div>
   
 <?php $this->load->view('footer'); ?>

@@ -18,10 +18,20 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+
+	 public function __construct()
+	 {
+			 parent::__construct();
+			 $this->load->model('Cats_model');
+			 // Your own constructor code
+	 }
+
 	public function index()
 	{
 		// $this->load->view('welcome_message');
-		$this->load->view('cats/cat_list');
+		// $this->load->model('Cats_model');
+		$data['cats']=$this->Cats_model->read();
+		$this->load->view('cats/cat_list',$data);
 
 
 	}
@@ -32,7 +42,10 @@ class Welcome extends CI_Controller {
 			$this->Cats_model->create();
 			redirect('');
 		}
-		$this->load->model('Cats_model');
+		// $this->load->model('Cats_model');
 		$this->load->view('cats/cat_form');
+	}
+	public function edit(){
+		// $this->load->model('Cats_model');
 	}
 }
