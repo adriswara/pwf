@@ -55,4 +55,8 @@ class Welcome extends CI_Controller {
 		$data['cat']=$this->Cats_model->read_by($id);
 		$this->load->view('cats/cat_form',$data);
 	}
+	public function delete($id){
+		$this->Cats_model->delete($id);
+		redirect('');
+	}
 }

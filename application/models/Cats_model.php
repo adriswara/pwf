@@ -39,6 +39,11 @@ class Cats_model extends CI_Model {
         $this->db->where('id',$id);
         $this->db->update('cats088',$data);
     }
+
+    public function delete($id){
+        $this->db->where('id',$id); 
+        $this->db->delete('cats088'); 
+    }
     
 
 }
