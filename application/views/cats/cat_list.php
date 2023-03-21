@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-body">
             <h4 class="card-title"><?= $i++ ?>. <?= $cat->name ?>, $<?= $cat->price ?></h4>
             <p class="card-text"> <?= $cat->name ?> adalah kucing Type <?= $cat->type ?> dengan Gender <?= $cat->gender ?> yang sudah berumur <?= $cat->age ?>.</p>
-            <a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a>
+            <a href="<?=site_url('Welcome/edit/'.$cat->id)?>" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a>
           </div>
           <img class="card-img-bottom" src="assets\img-cat1.png" alt="Card image" style="width:100%">
         </div>

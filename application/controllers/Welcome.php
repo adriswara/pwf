@@ -45,7 +45,14 @@ class Welcome extends CI_Controller {
 		// $this->load->model('Cats_model');
 		$this->load->view('cats/cat_form');
 	}
-	public function edit(){
+	public function edit($id){
+		if ($this->input->post('submit')) {
+			$this->Cats_model->update($id);
+			redirect('');
+		}
+
 		// $this->load->model('Cats_model');
+		$data['cat']=$this->Cats_model->read_by($id);
+		$this->load->view('cats/cat_form',$data);
 	}
 }
