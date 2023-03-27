@@ -40,6 +40,11 @@ class Welcome extends CI_Controller {
 		if ($this->input->post('submit')) {
 			$this->load->model('Cats_model');
 			$this->Cats_model->create();
+			if ($this->db->affected_rows()>0) {
+				$this->session->set_flashdata('msg','Cat sucessfully added !');		
+			}else {
+				$this->session->set_flashdata('msg','Cat gagal added !');		
+			}
 			redirect('');
 		}
 		// $this->load->model('Cats_model');
@@ -48,6 +53,11 @@ class Welcome extends CI_Controller {
 	public function edit($id){
 		if ($this->input->post('submit')) {
 			$this->Cats_model->update($id);
+			if ($this->db->affected_rows()>0) {
+				$this->session->set_flashdata('msg','Cat sucessfully updated !');		
+			}else {
+				$this->session->set_flashdata('msg','Cat gagal updated !');		
+			}
 			redirect('');
 		}
 
@@ -57,6 +67,11 @@ class Welcome extends CI_Controller {
 	}
 	public function delete($id){
 		$this->Cats_model->delete($id);
+		if ($this->db->affected_rows()>0) {
+			$this->session->set_flashdata('msg','Cat sucessfully deleted !');		
+		}else {
+			$this->session->set_flashdata('msg','Cat gagal deleted !');		
+		}
 		redirect('');
 	}
 }

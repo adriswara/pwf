@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 <div class="mt-0 p-5 bg-primary text-white">
   <h1>Daftar Kucing</h1>
+  <?= $this->session->flashdata('msg'); ?>
   <p>Berikut daftar kucing yang tersedia</p>
 </div>
     <!-- <hr>
