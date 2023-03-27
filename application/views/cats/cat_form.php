@@ -75,9 +75,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="mb-3 mt-3 ms-3">
     <select name="type" id="" required>
       <option value="">Choose Type</option>
-      <option value="Domestic" <?= $type=='Domestic'?'selected':''?>>Domestic</option>
-      <option value="Angora" <?= $type=='Angora'?'selected':''?>>Angora</option>
-      <option value="Persia" <?= $type=='Persia'?'selected':''?>>Persia</option>
+      <?php foreach($categori as $cate) { ?>
+        <option value="<?= $cate->cate_name; ?>" <?= set_select('type',$cate->cate_name,$type==$cate->cate_name?TRUE:FALSE)?>> <?= $cate->cate_name; ?> </option>
+      <?php } ?>
+     
     </select>
   </div>
   <div class="mb-3 mt-3 ms-3">

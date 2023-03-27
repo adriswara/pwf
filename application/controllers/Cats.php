@@ -19,17 +19,10 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 
-	/**
-	* 
-	* @deprecated
-	* 
-	*/
 	 public function __construct()
 	 {
 			 parent::__construct();
-			 $this->load->library('form_validation');
 			 $this->load->model('Cats_model');
-			 $this->load->model('Categori_model');
 			 // Your own constructor code
 	 }
 
@@ -52,11 +45,10 @@ class Welcome extends CI_Controller {
 			}else {
 				$this->session->set_flashdata('msg','Cat gagal added !');		
 			}
-			redirect('');
+			redirect('Cats/');
 		}
 		// $this->load->model('Cats_model');
-		$data['categori'] = $this->Categori_model->read();
-		$this->load->view('cats/cat_form',$data);
+		$this->load->view('cats/cat_form');
 	}
 	public function edit($id){
 		if ($this->input->post('submit')) {
@@ -66,12 +58,11 @@ class Welcome extends CI_Controller {
 			}else {
 				$this->session->set_flashdata('msg','Cat gagal updated !');		
 			}
-			redirect('');
+			redirect('Cats/');
 		}
 
 		// $this->load->model('Cats_model');
 		$data['cat']=$this->Cats_model->read_by($id);
-		$data['categori'] = $this->Categori_model->read();
 		$this->load->view('cats/cat_form',$data);
 	}
 	public function delete($id){
@@ -81,6 +72,6 @@ class Welcome extends CI_Controller {
 		}else {
 			$this->session->set_flashdata('msg','Cat gagal deleted !');		
 		}
-		redirect('');
+		redirect('Cats/');
 	}
 }
