@@ -49,12 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </form> -->
 
     <?php 
+    $id='';
       $name='';
       $type='';
       $gender='';
       $age='';
       $price='';
     if (isset($cat)) {
+      $id = $cat->id;
       $name=$cat->name;
       $type=$cat->type;
       $gender=$cat->gender;
@@ -69,31 +71,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <form action="" method="post">
   <div class="mb-3 mt-3 ms-3">
-    <label for="name" class="form-label">Nama:</label>
+    <label for="id" class="form-label">Id:</label>
+    <input type="text" class="form-control" id="id" placeholder="Enter id" name="id" value="<?= $id ?>" required>
+  </div>
+  <div class="mb-3 mt-3 ms-3">
+    <label for="name" class="form-label">name:</label>
     <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="<?= $name ?>" required>
   </div>
   <div class="mb-3 mt-3 ms-3">
-    <select name="type" id="" required>
-      <option value="">Choose Type</option>
-      <?php foreach($categori as $cate) { ?>
-        <option value="<?= $cate->cate_name; ?>" <?= set_select('type',$cate->cate_name,$type==$cate->cate_name?TRUE:FALSE)?>> <?= $cate->cate_name; ?> </option>
-      <?php } ?>
-     
-    </select>
-  </div>
-  <div class="mb-3 mt-3 ms-3">
-    <label for="gender" class="form-label">Gender:</label>
-    <input type="radio" class="form-radio" id="gender" name="gender" value="male" <?=$gender=='male'?'checked':''?> required>Male
-    <input type="radio" class="form-radio" id="gender" name="gender" value="female" <?=$gender=='female'?'checked':''?> required>Female
-  </div>
-  <div class="mb-3 mt-3 ms-3">
-    <label for="age" class="form-label">Age:</label>
-    <input type="number" class="form-control" id="age" placeholder="Enter age" name="age" value="<?= $age ?>" required>
+    <label for="type" class="form-label">Type:</label>
+    <input type="text" class="form-control" id="type" placeholder="Enter type" name="type" value="<?= $type ?>" required>
   </div>
   <div class="mb-3 mt-3 ms-3">
     <label for="price" class="form-label">Price:</label>
-    <input type="number" class="form-control" id="price" placeholder="Enter price" name="price" value="<?= $price ?>" required>
+    <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" value="<?= $price ?>" required>
   </div>
+  <div class="mb-3 mt-3 ms-3">
+    <label for="name" class="form-label">Customer Name:</label>
+    <input type="text" class="form-control" id="customer_name" placeholder="Enter name" name="customer_name" value="" required>
+  </div>
+  <div class="mb-3 mt-3 ms-3">
+    <label for="name" class="form-label">Customer Address:</label>
+    <input type="text" class="form-control" id="customer_address" placeholder="Enter name" name="customer_address" value="" required>
+  </div>
+  <div class="mb-3 mt-3 ms-3">
+    <label for="name" class="form-label">Customer Phone:</label>
+    <input type="text" class="form-control" id="customer_phone" placeholder="Enter name" name="customer_phone" value="" required>
+  </div>
+
+  
   <button type="submit" class="btn btn-primary ms-3" value="save" name="submit">Submit</button>
 </form> 
 

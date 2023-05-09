@@ -106,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
     <!--  -->
     <div class="col-sm-3 mt-5 ms-3 container">
-      <img  src="<?= base_url('assets/img-cat1.png'); ?>" alt="Avatar" class="image" style="width:100%">
+      <img src="assets\img-cat1.png" alt="Avatar" class="image" style="width:100%">
       <div class="middle">
         <!-- <div class="text">John Doe</div> -->
         <button id="masuk" class="btn btn-primary">List Kucing</button>
@@ -114,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <!--  -->
     <div class="col-sm-3 mt-5 ms-3 container">
-      <img  src="<?= base_url('assets/img-cat1.png'); ?>" alt="Avatar" class="image" style="width:100%">
+      <img src="assets\img-cat1.png" alt="Avatar" class="image" style="width:100%">
       <div class="middle">
         <!-- <div class="text">John Doe</div> -->
         <a id="masuk" class="btn btn-primary" href="<?=site_url('Categori/')?>">List Categori</a>
@@ -128,59 +128,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="mt-0 p-5 bg-primary text-white">
   <h1>Daftar Kucing</h1>
-  <?= $this->session->flashdata('msg'); ?>
+ <!-- <= $this->session->flashdata('msg'); > -->
   <p>Berikut daftar kucing yang tersedia</p>
 </div>
-    <!-- <hr>
-    <table border="1">
-        <tr>
+   
+<div class="">
+  <br>
+  <br>
+  <a href="<?=site_url('users/add')?>"><button type="button" class="btn btn-primary mb-4">Add New User</button></a>
+  <br>
+  <br>
+  <table class="table table-stripedtable-hover">
+    <thead  class="table-light">
+      <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>type</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Price($)</th>
-            <th>Action</th>
-        </tr>
+            <th>Username</th>
+            <th>Usertype</th>
+            <th>Fullname</th>
+            <th colspan="3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php $i=1; foreach($users as $user) { ?>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td><?= $i++ ?></td>
+            <td><?=$user->username?></td>
+            <td><?=$user->usertype?></td>
+            <td><?=$user->fullname?></td>
+            <td><a class="btn btn-warning" href="<?=site_url('users/edit/'.$user->userid)?>">Edit</a></td>
+            <td><a class="btn btn-danger" href="<?=site_url('users/delete/'.$user->userid)?>" onclick="return confirm('Are you sure?')">Delete</a></td>
+            <td><a class="btn btn-success" href="<?=site_url('users/reset/'.$user->userid)?>">Reset Password</a></td>
         </tr>
-    </table> -->
-    <a class="btn btn-dark mt-4 ms-3" href="<?=site_url('Welcome/add')?>">Add new cat</a>
-    <div class="row">
-    <!-- <div class="col-sm-3 mt-5 ms-3">
-        <div class="card bg-dark text-white" style="width:400px">
-          <div class="card-body">
-            <h4 class="card-title">1.Kucing Ipsum</h4>
-            <p class="card-text">Kucing Ipsum adalah Type a dengan Gender b yang sudah berumur c.</p>
-            <a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger">Delete</a>
-          </div>
-          <img class="card-img-bottom" src="assets\img-cat1.png" alt="Card image" style="width:100%">
-        </div>
-    </div> -->
-    <?php foreach($cats as $cat) { ?>
-    <div class="col-sm-3 mt-5 ms-3">
-        <div class="card bg-dark text-white" style="width:400px">
-          <div class="card-body">
-            <h4 class="card-title"><?= $i++ ?>. <?= $cat->name ?>, $<?= $cat->price ?></h4>
-            <p class="card-text"> <?= $cat->name ?> adalah kucing Type <?= $cat->type ?> dengan Gender <?= $cat->gender ?> yang sudah berumur <?= $cat->age ?>.</p>
-            <a href="<?=site_url('Welcome/edit/'.$cat->id)?>" class="btn btn-primary">Edit</a> 
-            <a href="<?=site_url('Welcome/changephoto/'.$cat->id)?>" class="btn btn-primary">Change Photo</a> 
-            <a href="<?=site_url('Welcome/delete/'.$cat->id)?>" class="btn btn-danger" onclick="return confirm('Confurm Delete?')" >Delete</a>
-    <?php if($cat->sold==1) echo 'SOLD' ;else{ ?><a href="<?=site_url('Welcome/sale/'.$cat->id)?>" class="btn btn-warning" onclick="return confirm('Confurm Sale?')" >Sale</a> <?php } ?>
-          </div>
-          <img class="card-img-bottom"   src="<?= base_url('uploads/cats/'.$cat->photo) ?>" alt="Card image" style="width:100%">
-        </div>
-    </div>
-    <?php } ?>
-  </div>
-  <p><?=$this->pagination->create_links();?></p>
+      <?php } ?>
+    </tbody>
+  </table>
+</div>
   
 <?php $this->load->view('footer'); ?>

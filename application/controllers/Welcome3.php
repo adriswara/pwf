@@ -37,27 +37,8 @@ class Welcome extends CI_Controller {
 	{
 		// $this->load->view('welcome_message');
 		// $this->load->model('Cats_model');
-
-		if(! $this->session->userdata('username')) redirect('auth/login');
-		//start
-		$this->load->library('pagination');
-		//
-		$config['base_url'] = site_url('welcome/index');
-		$config['total_rows'] = $this->db->count_all('cats088');
-		$config['per_page'] = 10;
-		//
-		$this->pagination->initialize($config);
-		//
-		$limit=$config['per_page'];
-		$start=$this->uri->segment(3)?$this->uri->segment(3):0;
-		//
-		$data['i']=$start+1;
-		$data['cats']=$this->Cats_model->read($limit,$start);
+		$data['cats']=$this->Cats_model->read();
 		$this->load->view('cats/cat_list',$data);
-		//end
-		
-		//$this->load->view('home_menu_036');
-		
 
 
 	}
@@ -102,53 +83,4 @@ class Welcome extends CI_Controller {
 		}
 		redirect('');
 	}
-
-	
-	public function sale($id){
-
-		if ($this->input->post('submit')) {
-			$this->Cats_model->sale($id);
-			if ($this->db->affected_rows()>0) {
-				$this->session->set_flashdata('msg','Cat Sold Sucess');
-			}else {
-				$this->session->set_flashdata('msg','Cat Sold Failed');
-			}
-			redirect('');
-		}
-
-		$data['cat']=$this->Cats_model->read_by($id);
-		$this->load->view('cats/cat_sales',$data);
-	}
-
-	public function sales(){
-		$data['sales']=$this->Cats_model->sales();
-		$this->load->view('cats/sale_list',$data);
-	}
-	//controller
-	public function changephoto($id){
-        // if (! $this->session->userdata('username')) redirect('auth/login');
-        $data['error']='';
-        if ($this->input->post('upload')) {
-            if ($this->upload()) {
-                $this->Cats_model->changephoto($this->upload->data('file_name'),$id);
-                // $this->session->set_userdata('photo',$this->upload->data('file_name'));
-                $this->session->set_userdata('msg','<p style="color:green">Photo sucessfuly changed !</p>');
-            }
-            else $data['error'] = $this->upload->display_errors();
-		}
-		$data['cat']=$this->Cats_model->read_by($id);
-        $this->load->view('cats/form_photo',$data);
-	}
-	
-	private function upload(){
-        $config['upload_path']          = './uploads/cats/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-
-        $this->load->library('upload', $config);
-        return $this->upload->do_upload('photo');
-    }
-
 }
